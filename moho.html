@@ -1,0 +1,3376 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-language="en_US">
+
+<head>
+  
+  <!-- Title -->
+  <title>Stirling PDF</title>
+
+  <!-- Metadata -->
+  <meta charset="utf-8">
+  <meta name="description" content="Stirling PDF">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest" crossorigin="use-credentials">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ca2b2a">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="Stirling PDF">
+  <meta name="application-name" content="Stirling PDF">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  <script>
+    window.stirlingPDF = window.stirlingPDF || {};
+  </script>
+  <script src="/js/thirdParty/pdf-lib.min.js"></script>
+  <script src="/js/fetch-utils.js"></script>
+  <!-- jQuery -->
+  <script src="/js/thirdParty/jquery.min.js"></script>
+  <script src="/js/thirdParty/jquery.validate.min.js"></script>
+  
+
+  <!-- Bootstrap -->
+  <script src="/js/thirdParty/popper.min.js"></script>
+  <script src="/js/thirdParty/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="/css/bootstrap-icons.min.css">
+
+  <!-- Pixel, doesn't collect any PII-->
+  <img referrerpolicy="no-referrer-when-downgrade"
+     src="https://pixel.stirlingpdf.com/a.png?x-pxid=4f5fa02f-a065-4efb-bb2c-24509a4b6b92&amp;machineType=Docker&amp;appVersion=0.46.1&amp;licenseType=ENTERPRISE&amp;loginEnabled=false"
+     style="position: absolute; visibility: hidden;" />
+     
+  <!-- Custom -->
+  <link rel="stylesheet" href="/css/general.css">
+  <link rel="stylesheet" href="/css/theme/theme.css">
+  <link rel="stylesheet" href="/css/theme/componentes.css">
+  <link rel="stylesheet" href="/css/theme/theme.light.css" id="light-mode-styles">
+  <link rel="stylesheet" href="/css/theme/theme.dark.css" id="dark-mode-styles">
+  <link rel="stylesheet" href="/css/rainbow-mode.css" id="rainbow-mode-styles" disabled>
+  <link rel="stylesheet" href="/css/tab-container.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+
+  
+
+  <link rel="stylesheet" href="/css/home.css">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/footer.css">
+
+  <link rel="preload" href="/fonts/google-symbol.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/cookieconsent.css">
+  <link rel="stylesheet" href="/css/cookieconsentCustomisation.css">
+  <script src="/js/thirdParty/fontfaceobserver.standalone.js"></script>
+
+  <!-- Google MD Icons -->
+  <link rel="stylesheet" href="/css/theme/font.css">
+
+  <!-- Help Modal -->
+  
+
+  
+  <script src="/js/tab-container.js"></script>
+  <script src="/js/darkmode.js"></script>
+  <script src="/js/csrf.js"></script>
+  <script>
+
+    function UpdatePosthogConsent(){
+      if(typeof(posthog) == "undefined") {
+        return;
+      }
+
+      window.CookieConsent.acceptedCategory('analytics')?
+        posthog.opt_in_capturing() : posthog.opt_out_capturing();
+    }
+    const stirlingPDFLabel = "Stirling-PDF v0.46.1";
+    const analyticsEnabled = true;
+
+    const cookieBannerPopUpTitle = "How we use Cookies";
+    const cookieBannerPopUpDescription1 = "We use cookies and other technologies to make Stirling PDF work better for you\u2014helping us improve our tools and keep building features you'll love.";
+    const cookieBannerPopUpDescription2 = "If you\u2019d rather not, clicking 'No Thanks' will only enable the essential cookies needed to keep things running smoothly.";
+    const cookieBannerPopUpAcceptAllBtn = "Okay";
+    const cookieBannerPopUpAcceptNecessaryBtn = "No Thanks";
+    const cookieBannerPopUpShowPreferencesBtn = "Manage preferences";
+    const cookieBannerPreferencesModalTitle = "Consent Preferences Center";
+    const cookieBannerPreferencesModalAcceptAllBtn = "Accept all";
+    const cookieBannerPreferencesModalAcceptNecessaryBtn = "Reject all";
+    const cookieBannerPreferencesModalSavePreferencesBtn = "Save preferences";
+    const cookieBannerPreferencesModalCloseIconLabel = "Close modal";
+    const cookieBannerPreferencesModalServiceCounterLabel = "Service|Services";
+    const cookieBannerPreferencesModalSubtitle = "Cookie Usage";
+    const cookieBannerPreferencesModalDescription1 = "Stirling PDF uses cookies and similar technologies to enhance your experience and understand how our tools are used. This helps us improve performance, develop the features you care about, and provide ongoing support to our users.";
+    const cookieBannerPreferencesModalDescription2= "Stirling PDF cannot\u2014and will never\u2014track or access the content of the documents you use.";
+    const cookieBannerPreferencesModalDescription3 = "Your privacy and trust are at the core of what we do.";
+    const cookieBannerPreferencesModalNecessaryTitle1 = "Strictly Necessary Cookies";
+    const cookieBannerPreferencesModalNecessaryTitle2 = "Always Enabled";
+    const cookieBannerPreferencesModalNecessaryDescription = "These cookies are essential for the website to function properly. They enable core features like setting your privacy preferences, logging in, and filling out forms\u2014which is why they can\u2019t be turned off.";
+    const cookieBannerPreferencesModalAnalyticsTitle = "Analytics";
+    const cookieBannerPreferencesModalAnalyticsDescription = "These cookies help us understand how our tools are being used, so we can focus on building the features our community values most. Rest assured\u2014Stirling PDF cannot and will never track the content of the documents you work with.";
+
+    if (analyticsEnabled) {
+      !function (t, e) {
+        var o, n, p, r;
+        e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) {
+          function g(t, e) {
+            var o = e.split(".");
+            2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+            }
+          }
+
+          (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r);
+          var u = e;
+          for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) {
+            var e = "posthog";
+            return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+          }, u.people.toString = function () {
+            return u.toString(1) + ".people (stub)"
+          }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "), n = 0; n < o.length; n++) g(u, o[n]);
+          e._i.push([i, s, a])
+        }, e.__SV = 1)
+      }(document, window.posthog || []);
+      posthog.init('phc_fiR65u5j6qmXTYL56MNrLZSWqLaDW74OrZH0Insd2xq', {
+        api_host: 'https://eu.i.posthog.com',
+        persistence: 'localStorage',
+        person_profiles: 'always',
+        mask_all_text: true,
+        mask_all_element_attributes: true,
+        opt_out_capturing_by_default: true
+      })
+      const baseUrl = window.location.hostname;
+      posthog.register_once({
+        'hostname': baseUrl,
+        'UUID': "d28a050c-1ecb-4309-9e2f-c0be9ac1987a",
+        'app_version': "0.46.1",
+      });
+    }
+
+    window.addEventListener("cc:onConsent", UpdatePosthogConsent);
+    window.addEventListener("cc:onChange", UpdatePosthogConsent);
+  </script>
+
+</head>
+
+<body>
+  <div id="page-container">  
+        <div class="mx-auto" style="position: sticky; top:0; z-index:10000; width:100%">
+  <script src="/js/languageSelection.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/additionalLanguageCode.js"></script>
+  <script>
+    // Initializing the scripts
+    initLanguageSettings();
+    document.addEventListener('DOMContentLoaded', function () {
+      toolsManager();
+    });
+  </script>
+  <script>
+    const currentVersion = "0.46.1";
+    const noFavourites = "No favorites added";
+    console.log(noFavourites);
+    const updateAvailable = "{0} is the current installed version. A new version ({1}) is available.";
+  </script>
+  <script src="/js/homecard.js"></script>
+  <script src="/js/githubVersion.js"></script>
+  <form action="/dummyFormToPopulateCSRF" method="post" enctype="multipart/form-data"></form>
+  <nav class="navbar navbar-expand-xl" style="
+  background: var(--md-nav-background);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--md-nav-color-on-seperator)">
+    <div class="container ">
+      <a class="navbar-brand" href="/" style="display: flex;">
+        <img class="main-icon" src="/favicon.svg" alt="icon">
+        <span class="icon-text">Stirling PDF</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-symbols-rounded">
+          menu
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto flex-nowrap">
+
+          <!-- All Tools -->
+          <li id="navItemToHide" class="nav-item dropdown dropdown-mega position-static">
+            <a class="nav-link" id="navbarDropdown-1" href="#" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="material-symbols-rounded">
+                apps
+              </span>
+              <span class="icon-text" data-text="Tools">Tools</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-tp" aria-labelledby="navbarDropdown-1">
+              <div class="dropdown-menu-wrapper" style="justify-content: center; display:flex">
+                <div class="feature-rows">
+
+                  
+  <div id="groupOrganize" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Organize</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="multi-tool" class="dropdown-item organize" style="position:relative" href="multi-tool"
+    data-bs-link="multi-tool"
+    data-bs-tags="Multi Tool,Multi operation,UI,click drag,front end,client side,interactive,intractable,move,delete,migrate,divide" data-bs-title='PDF Multi Tool'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merge, Rotate, Rearrange, Split, and Remove pages" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">construction</span>
+      <span class="icon-text">PDF Multi Tool</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="multi-tool"
+      onclick="addToFavorites(&#39;multi-tool&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+      
+  <a id="merge-pdfs" class="dropdown-item organize" style="position:relative" href="merge-pdfs"
+    data-bs-link="merge-pdfs"
+    data-bs-tags="merge,Page operations,Back end,server side" data-bs-title='Merge'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Easily merge multiple PDFs into one." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">add_to_photos</span>
+      <span class="icon-text">Merge</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="merge-pdfs"
+      onclick="addToFavorites(&#39;merge-pdfs&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdfs" class="dropdown-item organize" style="position:relative" href="split-pdfs"
+    data-bs-link="split-pdfs"
+    data-bs-tags="Page operations,divide,Multi Page,cut,server side" data-bs-title='Split'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Split PDFs into multiple documents" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">cut</span>
+      <span class="icon-text">Split</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdfs"
+      onclick="addToFavorites(&#39;split-pdfs&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="rotate-pdf" class="dropdown-item organize" style="position:relative" href="rotate-pdf"
+    data-bs-link="rotate-pdf"
+    data-bs-tags="server side" data-bs-title='Rotate'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Easily rotate your PDFs." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">rotate_right</span>
+      <span class="icon-text">Rotate</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="rotate-pdf"
+      onclick="addToFavorites(&#39;rotate-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="crop" class="dropdown-item organize" style="position:relative" href="crop"
+    data-bs-link="crop"
+    data-bs-tags="trim,shrink,edit,shape" data-bs-title='Crop PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Crop a PDF to reduce its size (maintains text!)" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">crop</span>
+      <span class="icon-text">Crop PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="crop"
+      onclick="addToFavorites(&#39;crop&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-organizer" class="dropdown-item organize" style="position:relative" href="pdf-organizer"
+    data-bs-link="pdf-organizer"
+    data-bs-tags="duplex,even,odd,sort,move" data-bs-title='Organize'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove/Rearrange pages in any order" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">format_list_bulleted</span>
+      <span class="icon-text">Organize</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-organizer"
+      onclick="addToFavorites(&#39;pdf-organizer&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-pages" class="dropdown-item organize" style="position:relative" href="remove-pages"
+    data-bs-link="remove-pages"
+    data-bs-tags="Remove pages,delete pages" data-bs-title='Remove'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Delete unwanted pages from your PDF document." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">delete</span>
+      <span class="icon-text">Remove</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-pages"
+      onclick="addToFavorites(&#39;remove-pages&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="multi-page-layout" class="dropdown-item organize" style="position:relative" href="multi-page-layout"
+    data-bs-link="multi-page-layout"
+    data-bs-tags="merge,composite,single-view,organize" data-bs-title='Multi-Page Layout'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merge multiple pages of a PDF document into a single page" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">dashboard</span>
+      <span class="icon-text">Multi-Page Layout</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="multi-page-layout"
+      onclick="addToFavorites(&#39;multi-page-layout&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="scale-pages" class="dropdown-item organize" style="position:relative" href="scale-pages"
+    data-bs-link="scale-pages"
+    data-bs-tags="resize,modify,dimension,adapt" data-bs-title='Adjust page size/scale'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change the size/scale of a page and/or its contents." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">fullscreen</span>
+      <span class="icon-text">Adjust page size/scale</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="scale-pages"
+      onclick="addToFavorites(&#39;scale-pages&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-page" class="dropdown-item organize" style="position:relative" href="extract-page"
+    data-bs-link="extract-page"
+    data-bs-tags="extract" data-bs-title='Extract page(s)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts select pages from PDF" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">upload</span>
+      <span class="icon-text">Extract page(s)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-page"
+      onclick="addToFavorites(&#39;extract-page&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-single-page" class="dropdown-item organize" style="position:relative" href="pdf-to-single-page"
+    data-bs-link="pdf-to-single-page"
+    data-bs-tags="single page" data-bs-title='Single Large Page'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merges all PDF pages into one large single page" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">looks_one</span>
+      <span class="icon-text">Single Large Page</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-single-page"
+      onclick="addToFavorites(&#39;pdf-to-single-page&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+  <div id="groupConvertTo" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert to PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="img-to-pdf" class="dropdown-item convertto" style="position:relative" href="img-to-pdf"
+    data-bs-link="img-to-pdf"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='Image to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a image (PNG, JPEG, GIF) to PDF." class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">Image to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="img-to-pdf"
+      onclick="addToFavorites(&#39;img-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="file-to-pdf" class="dropdown-item convertto" style="position:relative" href="file-to-pdf"
+    data-bs-link="file-to-pdf"
+    data-bs-tags="transformation,format,document,picture,slide,text,conversion,office,docs,word,excel,powerpoint" data-bs-title='Convert file to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert nearly any file to PDF (DOCX, PNG, XLS, PPT, TXT and more)" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">draft</span>
+      <span class="icon-text">Convert file to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="file-to-pdf"
+      onclick="addToFavorites(&#39;file-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+      
+  <a id="html-to-pdf" class="dropdown-item convertto" style="position:relative" href="html-to-pdf"
+    data-bs-link="html-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert" data-bs-title='HTML to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any HTML file or zip to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">HTML to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="html-to-pdf"
+      onclick="addToFavorites(&#39;html-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="markdown-to-pdf" class="dropdown-item convertto" style="position:relative" href="markdown-to-pdf"
+    data-bs-link="markdown-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='Markdown to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any Markdown file to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown</span>
+      <span class="icon-text">Markdown to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="markdown-to-pdf"
+      onclick="addToFavorites(&#39;markdown-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+  <div id="groupConvertFrom" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert from PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pdf-to-img" class="dropdown-item convert" style="position:relative" href="pdf-to-img"
+    data-bs-link="pdf-to-img"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='PDF to Image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a PDF to a image. (PNG, JPEG, GIF)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">PDF to Image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-img"
+      onclick="addToFavorites(&#39;pdf-to-img&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-pdfa" class="dropdown-item convert" style="position:relative" href="pdf-to-pdfa"
+    data-bs-link="pdf-to-pdfa"
+    data-bs-tags="archive,long-term,standard,conversion,storage,preservation" data-bs-title='PDF to PDF/A'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to PDF/A for long-term storage" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">PDF to PDF/A</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-pdfa"
+      onclick="addToFavorites(&#39;pdf-to-pdfa&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-word" class="dropdown-item convert" style="position:relative" href="pdf-to-word"
+    data-bs-link="pdf-to-word"
+    data-bs-tags="doc,docx,odt,word,transformation,format,conversion,office,microsoft,docfile" data-bs-title='PDF to Word'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Word formats (DOC, DOCX and ODT)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">description</span>
+      <span class="icon-text">PDF to Word</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-word"
+      onclick="addToFavorites(&#39;pdf-to-word&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-presentation" class="dropdown-item convert" style="position:relative" href="pdf-to-presentation"
+    data-bs-link="pdf-to-presentation"
+    data-bs-tags="slides,show,office,microsoft" data-bs-title='PDF to Presentation'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Presentation formats (PPT, PPTX and ODP)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">slideshow</span>
+      <span class="icon-text">PDF to Presentation</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-presentation"
+      onclick="addToFavorites(&#39;pdf-to-presentation&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-text" class="dropdown-item convert" style="position:relative" href="pdf-to-text"
+    data-bs-link="pdf-to-text"
+    data-bs-tags="richformat,richtextformat,rich text format" data-bs-title='PDF to RTF (Text)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Text or RTF format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">PDF to RTF (Text)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-text"
+      onclick="addToFavorites(&#39;pdf-to-text&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-html" class="dropdown-item convert" style="position:relative" href="pdf-to-html"
+    data-bs-link="pdf-to-html"
+    data-bs-tags="web content,browser friendly" data-bs-title='PDF to HTML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to HTML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">PDF to HTML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-html"
+      onclick="addToFavorites(&#39;pdf-to-html&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-xml" class="dropdown-item convert" style="position:relative" href="pdf-to-xml"
+    data-bs-link="pdf-to-xml"
+    data-bs-tags="data-extraction,structured-content,interop,transformation,convert" data-bs-title='PDF to XML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to XML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">code</span>
+      <span class="icon-text">PDF to XML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-xml"
+      onclick="addToFavorites(&#39;pdf-to-xml&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-csv" class="dropdown-item convert" style="position:relative" href="pdf-to-csv"
+    data-bs-link="pdf-to-csv"
+    data-bs-tags="CSV,Table Extraction,extract,convert" data-bs-title='PDF to CSV'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts Tables from a PDF converting it to CSV" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">csv</span>
+      <span class="icon-text">PDF to CSV</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-csv"
+      onclick="addToFavorites(&#39;pdf-to-csv&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-markdown" class="dropdown-item convert" style="position:relative" href="pdf-to-markdown"
+    data-bs-link="pdf-to-markdown"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='PDF to Markdown'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any PDF to Markdown" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown_copy</span>
+      <span class="icon-text">PDF to Markdown</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-markdown"
+      onclick="addToFavorites(&#39;pdf-to-markdown&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+    </div>
+  </div>
+  <div id="convertGroup" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert to PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="img-to-pdf" class="dropdown-item convertto" style="position:relative" href="img-to-pdf"
+    data-bs-link="img-to-pdf"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='Image to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a image (PNG, JPEG, GIF) to PDF." class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">Image to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="img-to-pdf"
+      onclick="addToFavorites(&#39;img-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="file-to-pdf" class="dropdown-item convertto" style="position:relative" href="file-to-pdf"
+    data-bs-link="file-to-pdf"
+    data-bs-tags="transformation,format,document,picture,slide,text,conversion,office,docs,word,excel,powerpoint" data-bs-title='Convert file to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert nearly any file to PDF (DOCX, PNG, XLS, PPT, TXT and more)" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">draft</span>
+      <span class="icon-text">Convert file to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="file-to-pdf"
+      onclick="addToFavorites(&#39;file-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+      
+  <a id="html-to-pdf" class="dropdown-item convertto" style="position:relative" href="html-to-pdf"
+    data-bs-link="html-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert" data-bs-title='HTML to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any HTML file or zip to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">HTML to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="html-to-pdf"
+      onclick="addToFavorites(&#39;html-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="markdown-to-pdf" class="dropdown-item convertto" style="position:relative" href="markdown-to-pdf"
+    data-bs-link="markdown-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='Markdown to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any Markdown file to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown</span>
+      <span class="icon-text">Markdown to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="markdown-to-pdf"
+      onclick="addToFavorites(&#39;markdown-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert from PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pdf-to-img" class="dropdown-item convert" style="position:relative" href="pdf-to-img"
+    data-bs-link="pdf-to-img"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='PDF to Image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a PDF to a image. (PNG, JPEG, GIF)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">PDF to Image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-img"
+      onclick="addToFavorites(&#39;pdf-to-img&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-pdfa" class="dropdown-item convert" style="position:relative" href="pdf-to-pdfa"
+    data-bs-link="pdf-to-pdfa"
+    data-bs-tags="archive,long-term,standard,conversion,storage,preservation" data-bs-title='PDF to PDF/A'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to PDF/A for long-term storage" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">PDF to PDF/A</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-pdfa"
+      onclick="addToFavorites(&#39;pdf-to-pdfa&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-word" class="dropdown-item convert" style="position:relative" href="pdf-to-word"
+    data-bs-link="pdf-to-word"
+    data-bs-tags="doc,docx,odt,word,transformation,format,conversion,office,microsoft,docfile" data-bs-title='PDF to Word'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Word formats (DOC, DOCX and ODT)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">description</span>
+      <span class="icon-text">PDF to Word</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-word"
+      onclick="addToFavorites(&#39;pdf-to-word&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-presentation" class="dropdown-item convert" style="position:relative" href="pdf-to-presentation"
+    data-bs-link="pdf-to-presentation"
+    data-bs-tags="slides,show,office,microsoft" data-bs-title='PDF to Presentation'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Presentation formats (PPT, PPTX and ODP)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">slideshow</span>
+      <span class="icon-text">PDF to Presentation</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-presentation"
+      onclick="addToFavorites(&#39;pdf-to-presentation&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-text" class="dropdown-item convert" style="position:relative" href="pdf-to-text"
+    data-bs-link="pdf-to-text"
+    data-bs-tags="richformat,richtextformat,rich text format" data-bs-title='PDF to RTF (Text)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Text or RTF format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">PDF to RTF (Text)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-text"
+      onclick="addToFavorites(&#39;pdf-to-text&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-html" class="dropdown-item convert" style="position:relative" href="pdf-to-html"
+    data-bs-link="pdf-to-html"
+    data-bs-tags="web content,browser friendly" data-bs-title='PDF to HTML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to HTML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">PDF to HTML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-html"
+      onclick="addToFavorites(&#39;pdf-to-html&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-xml" class="dropdown-item convert" style="position:relative" href="pdf-to-xml"
+    data-bs-link="pdf-to-xml"
+    data-bs-tags="data-extraction,structured-content,interop,transformation,convert" data-bs-title='PDF to XML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to XML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">code</span>
+      <span class="icon-text">PDF to XML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-xml"
+      onclick="addToFavorites(&#39;pdf-to-xml&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-csv" class="dropdown-item convert" style="position:relative" href="pdf-to-csv"
+    data-bs-link="pdf-to-csv"
+    data-bs-tags="CSV,Table Extraction,extract,convert" data-bs-title='PDF to CSV'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts Tables from a PDF converting it to CSV" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">csv</span>
+      <span class="icon-text">PDF to CSV</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-csv"
+      onclick="addToFavorites(&#39;pdf-to-csv&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+  <div id="groupSecurity" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Sign &amp; Security</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="add-password" class="dropdown-item security" style="position:relative" href="add-password"
+    data-bs-link="add-password"
+    data-bs-tags="secure,security" data-bs-title='Add Password'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Encrypt your PDF document with a password." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">lock</span>
+      <span class="icon-text">Add Password</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-password"
+      onclick="addToFavorites(&#39;add-password&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-password" class="dropdown-item security" style="position:relative" href="remove-password"
+    data-bs-link="remove-password"
+    data-bs-tags="secure,Decrypt,security,unpassword,delete password" data-bs-title='Remove Password'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove password protection from your PDF document." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">lock_open_right</span>
+      <span class="icon-text">Remove Password</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-password"
+      onclick="addToFavorites(&#39;remove-password&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="change-permissions" class="dropdown-item security" style="position:relative" href="change-permissions"
+    data-bs-link="change-permissions"
+    data-bs-tags="read,write,edit,print" data-bs-title='Change Permissions'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change the permissions of your PDF document" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">encrypted</span>
+      <span class="icon-text">Change Permissions</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="change-permissions"
+      onclick="addToFavorites(&#39;change-permissions&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="sign" class="dropdown-item security" style="position:relative" href="sign"
+    data-bs-link="sign"
+    data-bs-tags="authorize,initials,drawn-signature,text-sign,image-signature" data-bs-title='Sign'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adds signature to PDF by drawing, text or image" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">signature</span>
+      <span class="icon-text">Sign</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="sign"
+      onclick="addToFavorites(&#39;sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="cert-sign" class="dropdown-item security" style="position:relative" href="cert-sign"
+    data-bs-link="cert-sign"
+    data-bs-tags="authenticate,PEM,P12,official,encrypt" data-bs-title='Sign with Certificate'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Signs a PDF with a Certificate/Key (PEM/P12)" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">workspace_premium</span>
+      <span class="icon-text">Sign with Certificate</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="cert-sign"
+      onclick="addToFavorites(&#39;cert-sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+      
+  <a id="validate-signature" class="dropdown-item security" style="position:relative" href="validate-signature"
+    data-bs-link="validate-signature"
+    data-bs-tags="signature,verify,validate,pdf,certificate,digital signature,Validate Signature,Validate certificate" data-bs-title='Validate PDF Signature'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Verify digital signatures and certificates in PDF documents" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">verified</span>
+      <span class="icon-text">Validate PDF Signature</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="validate-signature"
+      onclick="addToFavorites(&#39;validate-signature&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-cert-sign" class="dropdown-item security" style="position:relative" href="remove-cert-sign"
+    data-bs-link="remove-cert-sign"
+    data-bs-tags="authenticate,PEM,P12,official,decrypt" data-bs-title='Remove Certificate Sign'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove certificate signature from PDF" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">remove_moderator</span>
+      <span class="icon-text">Remove Certificate Sign</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-cert-sign"
+      onclick="addToFavorites(&#39;remove-cert-sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="sanitize-pdf" class="dropdown-item security" style="position:relative" href="sanitize-pdf"
+    data-bs-link="sanitize-pdf"
+    data-bs-tags="clean,secure,safe,remove-threats" data-bs-title='Sanitize'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove scripts and other elements from PDF files" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">sanitizer</span>
+      <span class="icon-text">Sanitize</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="sanitize-pdf"
+      onclick="addToFavorites(&#39;sanitize-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="auto-redact" class="dropdown-item security" style="position:relative" href="auto-redact"
+    data-bs-link="auto-redact"
+    data-bs-tags="Redact,Hide,black out,black,marker,hidden" data-bs-title='Auto Redact'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto Redacts(Blacks out) text in a PDF based on input text" class="security" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/redact-auto.svg#icon-redact-auto"></use>
+      </svg>
+      <span class="icon-text">Auto Redact</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-redact"
+      onclick="addToFavorites(&#39;auto-redact&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="redact" class="dropdown-item security" style="position:relative" href="redact"
+    data-bs-link="redact"
+    data-bs-tags="Redact,Hide,black out,black,marker,hidden,manual" data-bs-title='Manual Redaction'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Redacts a PDF based on selected text, drawn shapes and/or selected page(s)" class="security" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/redact-manual.svg#icon-redact-manual"></use>
+      </svg>
+      <span class="icon-text">Manual Redaction</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="redact"
+      onclick="addToFavorites(&#39;redact&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="stamp" class="dropdown-item security" style="position:relative" href="stamp"
+    data-bs-link="stamp"
+    data-bs-tags="Stamp, Add image, center image, Watermark, PDF, Embed, Customize" data-bs-title='Add Stamp to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add text or add image stamps at set locations" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">approval</span>
+      <span class="icon-text">Add Stamp to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="stamp"
+      onclick="addToFavorites(&#39;stamp&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-watermark" class="dropdown-item security" style="position:relative" href="add-watermark"
+    data-bs-link="add-watermark"
+    data-bs-tags="Text,repeating,label,own,copyright,trademark,img,jpg,picture,photo" data-bs-title='Add Watermark'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add a custom watermark to your PDF document." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">water_drop</span>
+      <span class="icon-text">Add Watermark</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-watermark"
+      onclick="addToFavorites(&#39;add-watermark&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+  <div id="groupView" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">View &amp; Edit</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="view-pdf" class="dropdown-item other" style="position:relative" href="view-pdf"
+    data-bs-link="view-pdf"
+    data-bs-tags="view,read,annotate,text,image,highlight,edit" data-bs-title='View/Edit PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="View, annotate, draw, add text or images" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">menu_book</span>
+      <span class="icon-text">View/Edit PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="view-pdf"
+      onclick="addToFavorites(&#39;view-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-page-numbers" class="dropdown-item other" style="position:relative" href="add-page-numbers"
+    data-bs-link="add-page-numbers"
+    data-bs-tags="paginate,label,organize,index" data-bs-title='Add Page Numbers'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add Page numbers throughout a document in a set location" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">123</span>
+      <span class="icon-text">Add Page Numbers</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-page-numbers"
+      onclick="addToFavorites(&#39;add-page-numbers&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-image" class="dropdown-item other" style="position:relative" href="add-image"
+    data-bs-link="add-image"
+    data-bs-tags="img,jpg,picture,photo" data-bs-title='Add image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adds a image onto a set location on the PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">Add image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-image"
+      onclick="addToFavorites(&#39;add-image&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="change-metadata" class="dropdown-item other" style="position:relative" href="change-metadata"
+    data-bs-link="change-metadata"
+    data-bs-tags="Title,author,date,creation,time,publisher,producer,stats" data-bs-title='Change Metadata'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change/Remove/Add metadata from a PDF document" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">assignment</span>
+      <span class="icon-text">Change Metadata</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="change-metadata"
+      onclick="addToFavorites(&#39;change-metadata&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="ocr-pdf" class="dropdown-item other" style="position:relative" href="ocr-pdf"
+    data-bs-link="ocr-pdf"
+    data-bs-tags="recognition,text,image,scan,read,identify,detection,editable" data-bs-title='OCR / Cleanup scans'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Cleanup scans and detects text from images within a PDF and re-adds it as text." class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">quick_reference_all</span>
+      <span class="icon-text">OCR / Cleanup scans</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="ocr-pdf"
+      onclick="addToFavorites(&#39;ocr-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-images" class="dropdown-item other" style="position:relative" href="extract-images"
+    data-bs-link="extract-images"
+    data-bs-tags="picture,photo,save,archive,zip,capture,grab" data-bs-title='Extract Images'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts all images from a PDF and saves them to zip" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">Extract Images</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-images"
+      onclick="addToFavorites(&#39;extract-images&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="flatten" class="dropdown-item other" style="position:relative" href="flatten"
+    data-bs-link="flatten"
+    data-bs-tags="static,deactivate,non-interactive,streamline" data-bs-title='Flatten'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove all interactive elements and forms from a PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">layers_clear</span>
+      <span class="icon-text">Flatten</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="flatten"
+      onclick="addToFavorites(&#39;flatten&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-blanks" class="dropdown-item other" style="position:relative" href="remove-blanks"
+    data-bs-link="remove-blanks"
+    data-bs-tags="cleanup,streamline,non-content,organize" data-bs-title='Remove Blank pages'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Detects and removes blank pages from a document" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">scan_delete</span>
+      <span class="icon-text">Remove Blank pages</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-blanks"
+      onclick="addToFavorites(&#39;remove-blanks&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-annotations" class="dropdown-item other" style="position:relative" href="remove-annotations"
+    data-bs-link="remove-annotations"
+    data-bs-tags="comments,highlight,notes,markup,remove" data-bs-title='Remove Annotations'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Removes all comments/annotations from a PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">thread_unread</span>
+      <span class="icon-text">Remove Annotations</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-annotations"
+      onclick="addToFavorites(&#39;remove-annotations&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="compare" class="dropdown-item other" style="position:relative" href="compare"
+    data-bs-link="compare"
+    data-bs-tags="differentiate,contrast,changes,analysis" data-bs-title='Compare'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Compares and shows the differences between 2 PDF Documents" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">compare</span>
+      <span class="icon-text">Compare</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="compare"
+      onclick="addToFavorites(&#39;compare&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="get-info-on-pdf" class="dropdown-item other" style="position:relative" href="get-info-on-pdf"
+    data-bs-link="get-info-on-pdf"
+    data-bs-tags="infomation,data,stats,statistics" data-bs-title='Get ALL Info on PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Grabs any and all information possible on PDFs" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">info</span>
+      <span class="icon-text">Get ALL Info on PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="get-info-on-pdf"
+      onclick="addToFavorites(&#39;get-info-on-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-image-pdf" class="dropdown-item other" style="position:relative" href="remove-image-pdf"
+    data-bs-link="remove-image-pdf"
+    data-bs-tags="Remove Image,Page operations,Back end,server side" data-bs-title='Remove image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove image from PDF to reduce file size" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">remove_selection</span>
+      <span class="icon-text">Remove image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-image-pdf"
+      onclick="addToFavorites(&#39;remove-image-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="replace-and-invert-color-pdf" class="dropdown-item other" style="position:relative" href="replace-and-invert-color-pdf"
+    data-bs-link="replace-and-invert-color-pdf"
+    data-bs-tags="Replace Color,Page operations,Back end,server side" data-bs-title='Replace and Invert Color'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Replace color for text and background in PDF and invert full color of pdf to reduce file size" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">format_color_fill</span>
+      <span class="icon-text">Replace and Invert Color</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="replace-and-invert-color-pdf"
+      onclick="addToFavorites(&#39;replace-and-invert-color-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="unlock-pdf-forms" class="dropdown-item other" style="position:relative" href="unlock-pdf-forms"
+    data-bs-link="unlock-pdf-forms"
+    data-bs-tags="remove,delete,form,field,readonly" data-bs-title='Unlock PDF Forms'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove read-only property of form fields in a PDF document." class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">preview_off</span>
+      <span class="icon-text">Unlock PDF Forms</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="unlock-pdf-forms"
+      onclick="addToFavorites(&#39;unlock-pdf-forms&#39;)">
+      add
+    </span>
+  </a>
+
+  
+    </div>
+  </div>
+  <div id="groupAdvanced" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Advanced</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pipeline" class="dropdown-item advance" style="position:relative" href="pipeline"
+    data-bs-link="pipeline"
+    data-bs-tags="automate,sequence,scripted,batch-process" data-bs-title='Pipeline'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Run multiple actions on PDFs by defining pipeline scripts" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">family_history</span>
+      <span class="icon-text">Pipeline</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pipeline"
+      onclick="addToFavorites(&#39;pipeline&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="adjust-contrast" class="dropdown-item advance" style="position:relative" href="adjust-contrast"
+    data-bs-link="adjust-contrast"
+    data-bs-tags="color-correction,tune,modify,enhance" data-bs-title='Adjust Colors/Contrast'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adjust Contrast, Saturation and Brightness of a PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">palette</span>
+      <span class="icon-text">Adjust Colors/Contrast</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="adjust-contrast"
+      onclick="addToFavorites(&#39;adjust-contrast&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="compress-pdf" class="dropdown-item advance" style="position:relative" href="compress-pdf"
+    data-bs-link="compress-pdf"
+    data-bs-tags="squish,small,tiny" data-bs-title='Compress'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Compress PDFs to reduce their file size." class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">zoom_in_map</span>
+      <span class="icon-text">Compress</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="compress-pdf"
+      onclick="addToFavorites(&#39;compress-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-image-scans" class="dropdown-item advance" style="position:relative" href="extract-image-scans"
+    data-bs-link="extract-image-scans"
+    data-bs-tags="separate,auto-detect,scans,multi-photo,organize" data-bs-title='Detect/Split Scanned photos'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Splits multiple photos from within a photo/PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">scanner</span>
+      <span class="icon-text">Detect/Split Scanned photos</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-image-scans"
+      onclick="addToFavorites(&#39;extract-image-scans&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="repair" class="dropdown-item advance" style="position:relative" href="repair"
+    data-bs-link="repair"
+    data-bs-tags="fix,restore,correction,recover" data-bs-title='Repair'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Tries to repair a corrupt/broken PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">build</span>
+      <span class="icon-text">Repair</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="repair"
+      onclick="addToFavorites(&#39;repair&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="auto-rename" class="dropdown-item advance" style="position:relative" href="auto-rename"
+    data-bs-link="auto-rename"
+    data-bs-tags="auto-detect,header-based,organize,relabel" data-bs-title='Auto Rename PDF File'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto renames a PDF file based on its detected header" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/rename.svg#icon-rename"></use>
+      </svg>
+      <span class="icon-text">Auto Rename PDF File</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-rename"
+      onclick="addToFavorites(&#39;auto-rename&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="auto-split-pdf" class="dropdown-item advance" style="position:relative" href="auto-split-pdf"
+    data-bs-link="auto-split-pdf"
+    data-bs-tags="QR-based,separate,scan-segment,organize" data-bs-title='Auto Split Pages'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto Split Scanned PDF with physical scanned page splitter QR Code" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-auto.svg#icon-split-auto"></use>
+      </svg>
+      <span class="icon-text">Auto Split Pages</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-split-pdf"
+      onclick="addToFavorites(&#39;auto-split-pdf&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="show-javascript" class="dropdown-item advance" style="position:relative" href="show-javascript"
+    data-bs-link="show-javascript"
+    data-bs-tags="JS" data-bs-title='Show Javascript'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Searches and displays any JS injected into a PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">javascript</span>
+      <span class="icon-text">Show Javascript</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="show-javascript"
+      onclick="addToFavorites(&#39;show-javascript&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-by-size-or-count" class="dropdown-item advance" style="position:relative" href="split-by-size-or-count"
+    data-bs-link="split-by-size-or-count"
+    data-bs-tags="pdf,split,document,organization" data-bs-title='Auto Split by Size/Count'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Split a single PDF into multiple documents based on size, page count, or document count" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-size.svg#icon-split-size"></use>
+      </svg>
+      <span class="icon-text">Auto Split by Size/Count</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-by-size-or-count"
+      onclick="addToFavorites(&#39;split-by-size-or-count&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="overlay-pdf" class="dropdown-item advance" style="position:relative" href="overlay-pdf"
+    data-bs-link="overlay-pdf"
+    data-bs-tags="Overlay" data-bs-title='Overlay PDFs'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Overlays PDFs on-top of another PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">layers</span>
+      <span class="icon-text">Overlay PDFs</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="overlay-pdf"
+      onclick="addToFavorites(&#39;overlay-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdf-by-sections" class="dropdown-item advance" style="position:relative" href="split-pdf-by-sections"
+    data-bs-link="split-pdf-by-sections"
+    data-bs-tags="Section Split, Divide, Customize" data-bs-title='Split PDF by Sections'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Divide each page of a PDF into smaller horizontal and vertical sections" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">grid_on</span>
+      <span class="icon-text">Split PDF by Sections</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdf-by-sections"
+      onclick="addToFavorites(&#39;split-pdf-by-sections&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdf-by-chapters" class="dropdown-item advance" style="position:relative" href="split-pdf-by-chapters"
+    data-bs-link="split-pdf-by-chapters"
+    data-bs-tags="split,chapters,bookmarks,organize" data-bs-title='Split PDF by Chapters'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Split a PDF into multiple files based on its chapter structure." class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-chapters.svg#icon-split-chapters"></use>
+      </svg>
+      <span class="icon-text">Split PDF by Chapters</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdf-by-chapters"
+      onclick="addToFavorites(&#39;split-pdf-by-chapters&#39;)">
+      star
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/multi-tool" title="Merge, Rotate, Rearrange, Split, and Remove pages">
+              <span class="material-symbols-rounded">
+                construction
+              </span>
+              <span class="icon-text" data-text="Multi Tool">Multi Tool</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/pipeline" title="Run multiple actions on PDFs by defining pipeline scripts">
+              <span class="material-symbols-rounded">
+                family_history
+              </span>
+              <span class="icon-text" data-text="Pipeline">Pipeline</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/compress-pdf" title="Compress PDFs to reduce their file size.">
+              <span class="material-symbols-rounded">
+                zoom_in_map
+              </span>
+              <span class="icon-text" data-text="Compress">Compress</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/view-pdf" title="View, annotate, draw, add text or images">
+              <span class="material-symbols-rounded">
+                menu_book
+              </span>
+              <span class="icon-text" data-text="View/Edit PDF">View/Edit PDF</span>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/merge-pdfs'}"
+              th:classappend="${currentPage}=='merge-pdfs' ? 'active' : ''" th:title="#{home.merge.desc}">
+              <span class="material-symbols-rounded">
+                add_to_photos
+              </span>
+              <span class="icon-text" th:data-text="#{home.merge.title}" th:text="#{home.merge.title}"></span>
+            </a>
+          </li> -->
+
+        </ul>
+        <ul class="navbar-nav flex-nowrap">
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="navbarDropdown-5" href="#" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" title="Favorites">
+              <span class="material-symbols-rounded">
+                star
+              </span>
+              <span class="icon-text icon-hide" data-text="Favorites">Favorites</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-tp dropdown-mw-28" aria-labelledby="navbarDropdown-5">
+              <div class="dropdown-menu-wrapper px-xl-2 px-2" id="favoritesDropdown">
+                <!-- Dropdown items will be added here by JavaScript -->
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="dark-mode-toggle" href="#" title="Dark Mode">
+              <span class="material-symbols-rounded" id="dark-mode-icon">
+                dark_mode
+              </span>
+              <span class="icon-text icon-hide" id="dark-mode-text" data-text="Dark Mode">Dark Mode</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" title="Languages">
+              <span class="material-symbols-rounded">
+                language
+              </span>
+              <span class="icon-text icon-hide" data-text="Languages">Languages</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-tp" aria-labelledby="languageDropdown">
+              <div class="dropdown-menu-wrapper px-xl-2 px-2">
+                <div id="languageSelection" class="scrollable-y lang_dropdown-mw scalable-languages-container">
+                  
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="bg_BG">Български</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ar_AR">العربية</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ca_CA">Català</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="zh_CN">简体中文</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="zh_TW">繁體中文</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="zh_BO">བོད་ཡིག</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="az_AZ">Azərbaycan Dili</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="da_DK">Dansk</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="de_DE">Deutsch</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="en_GB">English (GB)</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="en_US">English (US)</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="eu_ES">Euskara</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="es_ES">Español</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="fr_FR">Français</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="id_ID">Bahasa Indonesia</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ga_IE">Gaeilge</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="it_IT">Italiano</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="nl_NL">Nederlands</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="fa_IR">پارسی</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="pl_PL">Polski</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="pt_BR">Português (BR)</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="pt_PT">Português (PT)</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ro_RO">Română</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="sk_SK">Slovenčina</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="sl_SI">Slovenščina</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="sv_SE">Svenska</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="tr_TR">Türkçe</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ru_RU">Русский</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ko_KR">한국어</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="ja_JP">日本語</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="el_GR">Ελληνικά</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="hu_HU">Magyar</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="hi_IN">हिन्दी</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="sr_LATN_RS">Srpski</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="uk_UA">Українська</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="cs_CZ">Česky</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="hr_HR">Hrvatski</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="no_NB">Norsk</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="th_TH">ไทย</a>
+  </div>
+
+     
+  <div class="lang-dropdown-item-wrapper">
+      <a 
+        class="dropdown-item lang_dropdown-item" href="" data-bs-language-code="vi_VN">Tiếng Việt</a>
+  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" title="Search">
+              <span class="material-symbols-rounded">
+                search
+              </span>
+              <span class="icon-text icon-hide">Search</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-tp" aria-labelledby="searchDropdown">
+              <div class="dropdown-menu-wrapper px-xl-2 px-2">
+                <form action="" class="d-flex p-2 search-form" id="searchForm">
+                  <input class="form-control search-input" type="search" placeholder="Search"
+                    aria-label="Search" id="navbarSearchInput">
+                </form>
+                <!-- Search Results -->
+                <div id="searchResults" class="search-results scrollable-y dropdown-mw-20"></div>
+              </div>
+            </div>
+          </li>
+
+          
+          <li class="nav-item">
+            <!-- Settings Button -->
+            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#settingsModal"
+              title="Settings">
+              <span class="material-symbols-rounded">
+                settings
+              </span>
+              <span class="icon-text icon-hide" data-text="Settings">Settings</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="/js/favourites.js"></script>
+    <script src="/js/search.js"></script>
+  </nav>
+
+  
+          <div id="errorContainer" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+            <h4 class="alert-heading">Error</h4>
+            <p></p>
+            <button type="button" class="btn btn-danger" onclick="toggletrace()">Show Stack Trace</button>
+            <button type="button" class="btn btn-secondary" onclick="copytrace()">Copy Stack Trace</button>
+            <button type="button" class="btn btn-info" onclick="showHelp()">Help</button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="dismissError()">
+              <span class="material-symbols-rounded">
+                close
+              </span>
+            </button>
+            <!-- Stack trace section -->
+            <div id="trace" style="max-height: 0; overflow: hidden;">
+              <div>
+                <pre id="traceContent"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" id="helpModalDialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="helpModalLabel">Help</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="dismissError()">
+                    <span class="material-symbols-rounded">
+                      close
+                    </span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <div id="support-section">
+                      <h1 class="display-2">Oops!</h1>
+                      <p class="lead">Sorry for the issue!</p>
+                      <br>
+                      <h2>Need help / Found an issue?</h2>
+                      <p>If you&#39;re still having trouble, don&#39;t hesitate to reach out to us for help. You can submit a ticket on our GitHub page or contact us through Discord:</p>
+                      <div id="button-group">
+                        <a href="https://github.com/Stirling-Tools/Stirling-PDF/issues" id="github-button" target="_blank">GitHub - Submit a ticket</a>
+                        <a href="https://discord.gg/HYmhKj45pU" id="discord-button" target="_blank">Discord - Submit Support post</a>
+                      </div>
+                      <a href="/" class="home-button">Go to Homepage</a>
+                      <a data-bs-dismiss="modal" class="home-button">Close</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/errorBanner.js"></script>
+
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span class="material-symbols-rounded">
+              close
+            </span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">App Version: 0.46.1</p>
+          <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+            <div class="footer-center" style="flex-direction: row;">
+              <a href="https://github.com/Stirling-Tools/Stirling-PDF" class="mx-1" role="button" target="_blank"
+                title="Visit Github Repository">
+                <img src="/images/github.svg" alt="github">
+              </a>
+              <a href="https://hub.docker.com/r/stirlingtools/stirling-pdf" class="mx-1" role="button" target="_blank"
+                title="See Docker Hub">
+                <img src="/images/docker.svg" alt="docker">
+              </a>
+              <a href="https://discord.gg/Cn8pWhQRxZ" class="mx-1" role="button" target="_blank"
+                title="Join our Discord server">
+                <img src="/images/discord.svg" alt="discord">
+              </a>
+            </div>
+
+            <a href="/swagger-ui/5.21.0/index.html" class="btn btn-sm btn-outline-primary mx-1" role="button"
+              target="_blank">API</a>
+            <a href="https://github.com/Stirling-Tools/Stirling-PDF/releases"
+              class="btn btn-sm btn-outline-primary mx-1" id="update-btn" role="button"
+              target="_blank">Update available</a>
+          </div>
+
+          <div class="mb-3">
+            <label for="downloadOption">Choose download option (For single file non zip downloads):</label>
+            <select class="form-control" id="downloadOption">
+              <option value="sameWindow">Open in same window</option>
+              <option value="newWindow">Open in new window</option>
+              <option value="downloadFile">Download file</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="zipThreshold">Zip files when the number of downloaded files exceeds</label><br />
+            <input type="range" class="form-range" min="1" max="9" step="1" id="zipThreshold" value="4">
+            <span id="zipThresholdValue" class="ms-2"></span>
+          </div>
+          <div class="form-check mb-3">
+            <input type="checkbox" id="boredWaiting" title="Enables easter egg game">
+            <label for="boredWaiting">Bored Waiting?</label>
+          </div>
+          <div class="form-check mb-3">
+            <input type="checkbox" id="cacheInputs" title="Enable to store previously used inputs for future runs">
+            <label for="cacheInputs">Save form inputs</label>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/settings.js"></script>
+  <script>
+    window.onload = function () {
+      updateFavoritesDropdown();
+
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      const navbarLink = document.querySelector(".navbar-brand");
+      const contentPath = "\/";
+      if (localStorage.getItem("defaultView") === "home-legacy") {
+        navbarLink.setAttribute("href", contentPath + "home-legacy");
+      } else {
+        navbarLink.setAttribute("href", contentPath);
+      }
+    });
+  </script>
+</div>
+    <div style="transform-origin: top;"
+    id="scale-wrap">
+      <br class="d-md-none">
+      <!-- Features -->
+      <script src="/js/homecard.js"></script>
+      <div style="
+      width: 100%;
+      display: flex;
+      flex-direction: column;"
+      >
+        <div>
+          <br>
+          <div style="justify-content: center; display: flex;">
+            <div style="margin:0 3rem">
+              <div>
+                <div
+                  style="display:flex; flex-direction: column; justify-content: center; width:100%; margin-bottom:1rem">
+                  <div style="width:fit-content; margin: 0 auto; padding: 0 3rem">
+                    <p class="lead fs-4">Your locally hosted one-stop-shop for all your PDF needs.</p>
+                  </div>
+                  <div id="groupRecent" style="width: fit-content; margin: 0 auto">
+                    <div class="feature-group-header">
+  <h6 class="menu-title">New and recently updated</h6>
+</div>
+                    <div class="recent-features">
+                      <div class="newfeature">
+  <a id="redact" class="dropdown-item security" style="position:relative" href="redact"
+    data-bs-link="redact"
+    data-bs-tags="Redact,Hide,black out,black,marker,hidden,manual" data-bs-title='Manual Redaction'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Redacts a PDF based on selected text, drawn shapes and/or selected page(s)" class="security" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/redact-manual.svg#icon-redact-manual"></use>
+      </svg>
+      <span class="icon-text">Manual Redaction</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="redact"
+      onclick="addToFavorites(&#39;redact&#39;)">
+      star
+    </span>
+  </a>
+
+</div>
+                      <div class="newfeature">
+  <a id="multi-tool" class="dropdown-item organize" style="position:relative" href="multi-tool"
+    data-bs-link="multi-tool"
+    data-bs-tags="Multi Tool,Multi operation,UI,click drag,front end,client side,interactive,intractable,move,delete,migrate,divide" data-bs-title='PDF Multi Tool'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merge, Rotate, Rearrange, Split, and Remove pages" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">construction</span>
+      <span class="icon-text">PDF Multi Tool</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="multi-tool"
+      onclick="addToFavorites(&#39;multi-tool&#39;)">
+      add
+    </span>
+  </a>
+
+</div>
+                      <div class="newfeature">
+  <a id="compress-pdf" class="dropdown-item advance" style="position:relative" href="compress-pdf"
+    data-bs-link="compress-pdf"
+    data-bs-tags="??compressPDFs.tags_en_US??" data-bs-title='Compress'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Compress PDFs to reduce their file size." class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">zoom_in_map</span>
+      <span class="icon-text">Compress</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="compress-pdf"
+      onclick="addToFavorites(&#39;compress-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <span class="material-symbols-rounded search-icon">
+                search
+              </span>
+              <input type="text" id="searchBar" onkeyup="filterCards()" placeholder="Search for features..." autofocus>
+
+              <div style="display: flex; column-gap: 3rem; flex-wrap: wrap; margin-left:1rem">
+                <div
+                  style="height:2.5rem;  display: flex; align-items: center; cursor: pointer; justify-content: center;">
+                  <label for="sort-options">Sort by:</label>
+                  <select id="sort-options" style="border:none;">
+                    <option value="alphabetical">Alphabetical</option>
+                    <!-- <option value="personal">Your most used</option> -->
+                    <option value="global">Global Popularity</option>
+                    <!-- <option value="server">Popularity in organisation</option> -->
+                  </select>
+                </div>
+                <div
+                  style="display: flex; align-items: center; flex-wrap: wrap; align-content: flex-start; width: fit-content; max-width: 100%; gap:2rem;  justify-content: center;">
+                  <div title="Set Favourites" style="display: flex; align-items: center; cursor: pointer;"
+                    onclick="toggleFavoritesMode()">
+                    <span class="material-symbols-rounded toggle-favourites"
+                      style="font-size: 2rem;  margin-left: 0.2rem;">
+                      star
+                    </span>
+                  </div>
+                  <div onclick="toggleFavoritesView()" title="Hide Favourites" id="favouritesVisibility"
+                    style="display: flex; align-items: center; cursor: pointer;">
+                    <span id="toggle-favourites-icon" class="material-symbols-rounded toggle-favourites"
+                      style="font-size: 2rem;  margin-left: 0.2rem;">
+                      visibility
+                    </span>
+                  </div>
+                  <a href="home" onclick="setAsDefault('home-legacy')" title="Old homepage"
+                    style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center;">
+                    <span class="material-symbols-rounded toggle-favourites"
+                      style="font-size: 2rem; margin-left: 0.2rem;">
+                      home
+                    </span>
+                  </a>
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+        </div>
+        <div class="features-container" style="  border-top: 1px;
+        border-top-style: solid;
+        border-color: var(--md-nav-color-on-seperator);
+        margin-top: 1rem;
+      ">
+          <div class="feature-rows">
+            <div id="groupFavorites" class="feature-group">
+              <div class="feature-group-header">
+  <h6 class="menu-title">Favorites</h6>
+</div>
+              <div class="nav-group-container">
+              </div>
+            </div>
+            
+  <div id="groupOrganize" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Organize</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="multi-tool" class="dropdown-item organize" style="position:relative" href="multi-tool"
+    data-bs-link="multi-tool"
+    data-bs-tags="Multi Tool,Multi operation,UI,click drag,front end,client side,interactive,intractable,move,delete,migrate,divide" data-bs-title='PDF Multi Tool'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merge, Rotate, Rearrange, Split, and Remove pages" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">construction</span>
+      <span class="icon-text">PDF Multi Tool</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="multi-tool"
+      onclick="addToFavorites(&#39;multi-tool&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+      
+  <a id="merge-pdfs" class="dropdown-item organize" style="position:relative" href="merge-pdfs"
+    data-bs-link="merge-pdfs"
+    data-bs-tags="merge,Page operations,Back end,server side" data-bs-title='Merge'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Easily merge multiple PDFs into one." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">add_to_photos</span>
+      <span class="icon-text">Merge</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="merge-pdfs"
+      onclick="addToFavorites(&#39;merge-pdfs&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdfs" class="dropdown-item organize" style="position:relative" href="split-pdfs"
+    data-bs-link="split-pdfs"
+    data-bs-tags="Page operations,divide,Multi Page,cut,server side" data-bs-title='Split'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Split PDFs into multiple documents" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">cut</span>
+      <span class="icon-text">Split</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdfs"
+      onclick="addToFavorites(&#39;split-pdfs&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="rotate-pdf" class="dropdown-item organize" style="position:relative" href="rotate-pdf"
+    data-bs-link="rotate-pdf"
+    data-bs-tags="server side" data-bs-title='Rotate'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Easily rotate your PDFs." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">rotate_right</span>
+      <span class="icon-text">Rotate</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="rotate-pdf"
+      onclick="addToFavorites(&#39;rotate-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="crop" class="dropdown-item organize" style="position:relative" href="crop"
+    data-bs-link="crop"
+    data-bs-tags="trim,shrink,edit,shape" data-bs-title='Crop PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Crop a PDF to reduce its size (maintains text!)" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">crop</span>
+      <span class="icon-text">Crop PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="crop"
+      onclick="addToFavorites(&#39;crop&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-organizer" class="dropdown-item organize" style="position:relative" href="pdf-organizer"
+    data-bs-link="pdf-organizer"
+    data-bs-tags="duplex,even,odd,sort,move" data-bs-title='Organize'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove/Rearrange pages in any order" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">format_list_bulleted</span>
+      <span class="icon-text">Organize</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-organizer"
+      onclick="addToFavorites(&#39;pdf-organizer&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-pages" class="dropdown-item organize" style="position:relative" href="remove-pages"
+    data-bs-link="remove-pages"
+    data-bs-tags="Remove pages,delete pages" data-bs-title='Remove'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Delete unwanted pages from your PDF document." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">delete</span>
+      <span class="icon-text">Remove</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-pages"
+      onclick="addToFavorites(&#39;remove-pages&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="multi-page-layout" class="dropdown-item organize" style="position:relative" href="multi-page-layout"
+    data-bs-link="multi-page-layout"
+    data-bs-tags="merge,composite,single-view,organize" data-bs-title='Multi-Page Layout'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merge multiple pages of a PDF document into a single page" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">dashboard</span>
+      <span class="icon-text">Multi-Page Layout</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="multi-page-layout"
+      onclick="addToFavorites(&#39;multi-page-layout&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="scale-pages" class="dropdown-item organize" style="position:relative" href="scale-pages"
+    data-bs-link="scale-pages"
+    data-bs-tags="resize,modify,dimension,adapt" data-bs-title='Adjust page size/scale'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change the size/scale of a page and/or its contents." class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">fullscreen</span>
+      <span class="icon-text">Adjust page size/scale</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="scale-pages"
+      onclick="addToFavorites(&#39;scale-pages&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-page" class="dropdown-item organize" style="position:relative" href="extract-page"
+    data-bs-link="extract-page"
+    data-bs-tags="extract" data-bs-title='Extract page(s)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts select pages from PDF" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">upload</span>
+      <span class="icon-text">Extract page(s)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-page"
+      onclick="addToFavorites(&#39;extract-page&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-single-page" class="dropdown-item organize" style="position:relative" href="pdf-to-single-page"
+    data-bs-link="pdf-to-single-page"
+    data-bs-tags="single page" data-bs-title='Single Large Page'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Merges all PDF pages into one large single page" class="organize" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">looks_one</span>
+      <span class="icon-text">Single Large Page</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-single-page"
+      onclick="addToFavorites(&#39;pdf-to-single-page&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+  <div id="groupConvertTo" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert to PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="img-to-pdf" class="dropdown-item convertto" style="position:relative" href="img-to-pdf"
+    data-bs-link="img-to-pdf"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='Image to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a image (PNG, JPEG, GIF) to PDF." class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">Image to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="img-to-pdf"
+      onclick="addToFavorites(&#39;img-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="file-to-pdf" class="dropdown-item convertto" style="position:relative" href="file-to-pdf"
+    data-bs-link="file-to-pdf"
+    data-bs-tags="transformation,format,document,picture,slide,text,conversion,office,docs,word,excel,powerpoint" data-bs-title='Convert file to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert nearly any file to PDF (DOCX, PNG, XLS, PPT, TXT and more)" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">draft</span>
+      <span class="icon-text">Convert file to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="file-to-pdf"
+      onclick="addToFavorites(&#39;file-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+      
+  <a id="html-to-pdf" class="dropdown-item convertto" style="position:relative" href="html-to-pdf"
+    data-bs-link="html-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert" data-bs-title='HTML to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any HTML file or zip to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">HTML to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="html-to-pdf"
+      onclick="addToFavorites(&#39;html-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="markdown-to-pdf" class="dropdown-item convertto" style="position:relative" href="markdown-to-pdf"
+    data-bs-link="markdown-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='Markdown to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any Markdown file to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown</span>
+      <span class="icon-text">Markdown to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="markdown-to-pdf"
+      onclick="addToFavorites(&#39;markdown-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+  <div id="groupConvertFrom" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert from PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pdf-to-img" class="dropdown-item convert" style="position:relative" href="pdf-to-img"
+    data-bs-link="pdf-to-img"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='PDF to Image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a PDF to a image. (PNG, JPEG, GIF)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">PDF to Image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-img"
+      onclick="addToFavorites(&#39;pdf-to-img&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-pdfa" class="dropdown-item convert" style="position:relative" href="pdf-to-pdfa"
+    data-bs-link="pdf-to-pdfa"
+    data-bs-tags="archive,long-term,standard,conversion,storage,preservation" data-bs-title='PDF to PDF/A'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to PDF/A for long-term storage" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">PDF to PDF/A</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-pdfa"
+      onclick="addToFavorites(&#39;pdf-to-pdfa&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-word" class="dropdown-item convert" style="position:relative" href="pdf-to-word"
+    data-bs-link="pdf-to-word"
+    data-bs-tags="doc,docx,odt,word,transformation,format,conversion,office,microsoft,docfile" data-bs-title='PDF to Word'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Word formats (DOC, DOCX and ODT)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">description</span>
+      <span class="icon-text">PDF to Word</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-word"
+      onclick="addToFavorites(&#39;pdf-to-word&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-presentation" class="dropdown-item convert" style="position:relative" href="pdf-to-presentation"
+    data-bs-link="pdf-to-presentation"
+    data-bs-tags="slides,show,office,microsoft" data-bs-title='PDF to Presentation'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Presentation formats (PPT, PPTX and ODP)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">slideshow</span>
+      <span class="icon-text">PDF to Presentation</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-presentation"
+      onclick="addToFavorites(&#39;pdf-to-presentation&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-text" class="dropdown-item convert" style="position:relative" href="pdf-to-text"
+    data-bs-link="pdf-to-text"
+    data-bs-tags="richformat,richtextformat,rich text format" data-bs-title='PDF to RTF (Text)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Text or RTF format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">PDF to RTF (Text)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-text"
+      onclick="addToFavorites(&#39;pdf-to-text&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-html" class="dropdown-item convert" style="position:relative" href="pdf-to-html"
+    data-bs-link="pdf-to-html"
+    data-bs-tags="web content,browser friendly" data-bs-title='PDF to HTML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to HTML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">PDF to HTML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-html"
+      onclick="addToFavorites(&#39;pdf-to-html&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-xml" class="dropdown-item convert" style="position:relative" href="pdf-to-xml"
+    data-bs-link="pdf-to-xml"
+    data-bs-tags="data-extraction,structured-content,interop,transformation,convert" data-bs-title='PDF to XML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to XML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">code</span>
+      <span class="icon-text">PDF to XML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-xml"
+      onclick="addToFavorites(&#39;pdf-to-xml&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-csv" class="dropdown-item convert" style="position:relative" href="pdf-to-csv"
+    data-bs-link="pdf-to-csv"
+    data-bs-tags="CSV,Table Extraction,extract,convert" data-bs-title='PDF to CSV'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts Tables from a PDF converting it to CSV" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">csv</span>
+      <span class="icon-text">PDF to CSV</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-csv"
+      onclick="addToFavorites(&#39;pdf-to-csv&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-markdown" class="dropdown-item convert" style="position:relative" href="pdf-to-markdown"
+    data-bs-link="pdf-to-markdown"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='PDF to Markdown'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any PDF to Markdown" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown_copy</span>
+      <span class="icon-text">PDF to Markdown</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-markdown"
+      onclick="addToFavorites(&#39;pdf-to-markdown&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+    </div>
+  </div>
+  <div id="convertGroup" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert to PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="img-to-pdf" class="dropdown-item convertto" style="position:relative" href="img-to-pdf"
+    data-bs-link="img-to-pdf"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='Image to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a image (PNG, JPEG, GIF) to PDF." class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">Image to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="img-to-pdf"
+      onclick="addToFavorites(&#39;img-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="file-to-pdf" class="dropdown-item convertto" style="position:relative" href="file-to-pdf"
+    data-bs-link="file-to-pdf"
+    data-bs-tags="transformation,format,document,picture,slide,text,conversion,office,docs,word,excel,powerpoint" data-bs-title='Convert file to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert nearly any file to PDF (DOCX, PNG, XLS, PPT, TXT and more)" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">draft</span>
+      <span class="icon-text">Convert file to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="file-to-pdf"
+      onclick="addToFavorites(&#39;file-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+      
+  <a id="html-to-pdf" class="dropdown-item convertto" style="position:relative" href="html-to-pdf"
+    data-bs-link="html-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert" data-bs-title='HTML to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any HTML file or zip to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">HTML to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="html-to-pdf"
+      onclick="addToFavorites(&#39;html-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="markdown-to-pdf" class="dropdown-item convertto" style="position:relative" href="markdown-to-pdf"
+    data-bs-link="markdown-to-pdf"
+    data-bs-tags="markup,web-content,transformation,convert,md" data-bs-title='Markdown to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Converts any Markdown file to PDF" class="convertto" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">markdown</span>
+      <span class="icon-text">Markdown to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="markdown-to-pdf"
+      onclick="addToFavorites(&#39;markdown-to-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+    <div class="feature-group-header">
+  <h6 class="menu-title">Convert from PDF</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pdf-to-img" class="dropdown-item convert" style="position:relative" href="pdf-to-img"
+    data-bs-link="pdf-to-img"
+    data-bs-tags="conversion,img,jpg,picture,photo" data-bs-title='PDF to Image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert a PDF to a image. (PNG, JPEG, GIF)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">PDF to Image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-img"
+      onclick="addToFavorites(&#39;pdf-to-img&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-pdfa" class="dropdown-item convert" style="position:relative" href="pdf-to-pdfa"
+    data-bs-link="pdf-to-pdfa"
+    data-bs-tags="archive,long-term,standard,conversion,storage,preservation" data-bs-title='PDF to PDF/A'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to PDF/A for long-term storage" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">picture_as_pdf</span>
+      <span class="icon-text">PDF to PDF/A</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-pdfa"
+      onclick="addToFavorites(&#39;pdf-to-pdfa&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-word" class="dropdown-item convert" style="position:relative" href="pdf-to-word"
+    data-bs-link="pdf-to-word"
+    data-bs-tags="doc,docx,odt,word,transformation,format,conversion,office,microsoft,docfile" data-bs-title='PDF to Word'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Word formats (DOC, DOCX and ODT)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">description</span>
+      <span class="icon-text">PDF to Word</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-word"
+      onclick="addToFavorites(&#39;pdf-to-word&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-presentation" class="dropdown-item convert" style="position:relative" href="pdf-to-presentation"
+    data-bs-link="pdf-to-presentation"
+    data-bs-tags="slides,show,office,microsoft" data-bs-title='PDF to Presentation'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Presentation formats (PPT, PPTX and ODP)" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">slideshow</span>
+      <span class="icon-text">PDF to Presentation</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-presentation"
+      onclick="addToFavorites(&#39;pdf-to-presentation&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-text" class="dropdown-item convert" style="position:relative" href="pdf-to-text"
+    data-bs-link="pdf-to-text"
+    data-bs-tags="richformat,richtextformat,rich text format" data-bs-title='PDF to RTF (Text)'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to Text or RTF format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">PDF to RTF (Text)</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-text"
+      onclick="addToFavorites(&#39;pdf-to-text&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-html" class="dropdown-item convert" style="position:relative" href="pdf-to-html"
+    data-bs-link="pdf-to-html"
+    data-bs-tags="web content,browser friendly" data-bs-title='PDF to HTML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to HTML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">html</span>
+      <span class="icon-text">PDF to HTML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-html"
+      onclick="addToFavorites(&#39;pdf-to-html&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-xml" class="dropdown-item convert" style="position:relative" href="pdf-to-xml"
+    data-bs-link="pdf-to-xml"
+    data-bs-tags="data-extraction,structured-content,interop,transformation,convert" data-bs-title='PDF to XML'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Convert PDF to XML format" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">code</span>
+      <span class="icon-text">PDF to XML</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-xml"
+      onclick="addToFavorites(&#39;pdf-to-xml&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="pdf-to-csv" class="dropdown-item convert" style="position:relative" href="pdf-to-csv"
+    data-bs-link="pdf-to-csv"
+    data-bs-tags="CSV,Table Extraction,extract,convert" data-bs-title='PDF to CSV'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts Tables from a PDF converting it to CSV" class="convert" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">csv</span>
+      <span class="icon-text">PDF to CSV</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pdf-to-csv"
+      onclick="addToFavorites(&#39;pdf-to-csv&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+  <div id="groupSecurity" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Sign &amp; Security</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="add-password" class="dropdown-item security" style="position:relative" href="add-password"
+    data-bs-link="add-password"
+    data-bs-tags="secure,security" data-bs-title='Add Password'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Encrypt your PDF document with a password." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">lock</span>
+      <span class="icon-text">Add Password</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-password"
+      onclick="addToFavorites(&#39;add-password&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-password" class="dropdown-item security" style="position:relative" href="remove-password"
+    data-bs-link="remove-password"
+    data-bs-tags="secure,Decrypt,security,unpassword,delete password" data-bs-title='Remove Password'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove password protection from your PDF document." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">lock_open_right</span>
+      <span class="icon-text">Remove Password</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-password"
+      onclick="addToFavorites(&#39;remove-password&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="change-permissions" class="dropdown-item security" style="position:relative" href="change-permissions"
+    data-bs-link="change-permissions"
+    data-bs-tags="read,write,edit,print" data-bs-title='Change Permissions'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change the permissions of your PDF document" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">encrypted</span>
+      <span class="icon-text">Change Permissions</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="change-permissions"
+      onclick="addToFavorites(&#39;change-permissions&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="sign" class="dropdown-item security" style="position:relative" href="sign"
+    data-bs-link="sign"
+    data-bs-tags="authorize,initials,drawn-signature,text-sign,image-signature" data-bs-title='Sign'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adds signature to PDF by drawing, text or image" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">signature</span>
+      <span class="icon-text">Sign</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="sign"
+      onclick="addToFavorites(&#39;sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="cert-sign" class="dropdown-item security" style="position:relative" href="cert-sign"
+    data-bs-link="cert-sign"
+    data-bs-tags="authenticate,PEM,P12,official,encrypt" data-bs-title='Sign with Certificate'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Signs a PDF with a Certificate/Key (PEM/P12)" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">workspace_premium</span>
+      <span class="icon-text">Sign with Certificate</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="cert-sign"
+      onclick="addToFavorites(&#39;cert-sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+
+      
+  <a id="validate-signature" class="dropdown-item security" style="position:relative" href="validate-signature"
+    data-bs-link="validate-signature"
+    data-bs-tags="signature,verify,validate,pdf,certificate,digital signature,Validate Signature,Validate certificate" data-bs-title='Validate PDF Signature'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Verify digital signatures and certificates in PDF documents" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">verified</span>
+      <span class="icon-text">Validate PDF Signature</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="validate-signature"
+      onclick="addToFavorites(&#39;validate-signature&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-cert-sign" class="dropdown-item security" style="position:relative" href="remove-cert-sign"
+    data-bs-link="remove-cert-sign"
+    data-bs-tags="authenticate,PEM,P12,official,decrypt" data-bs-title='Remove Certificate Sign'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove certificate signature from PDF" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">remove_moderator</span>
+      <span class="icon-text">Remove Certificate Sign</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-cert-sign"
+      onclick="addToFavorites(&#39;remove-cert-sign&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="sanitize-pdf" class="dropdown-item security" style="position:relative" href="sanitize-pdf"
+    data-bs-link="sanitize-pdf"
+    data-bs-tags="clean,secure,safe,remove-threats" data-bs-title='Sanitize'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove scripts and other elements from PDF files" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">sanitizer</span>
+      <span class="icon-text">Sanitize</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="sanitize-pdf"
+      onclick="addToFavorites(&#39;sanitize-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="auto-redact" class="dropdown-item security" style="position:relative" href="auto-redact"
+    data-bs-link="auto-redact"
+    data-bs-tags="Redact,Hide,black out,black,marker,hidden" data-bs-title='Auto Redact'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto Redacts(Blacks out) text in a PDF based on input text" class="security" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/redact-auto.svg#icon-redact-auto"></use>
+      </svg>
+      <span class="icon-text">Auto Redact</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-redact"
+      onclick="addToFavorites(&#39;auto-redact&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="redact" class="dropdown-item security" style="position:relative" href="redact"
+    data-bs-link="redact"
+    data-bs-tags="Redact,Hide,black out,black,marker,hidden,manual" data-bs-title='Manual Redaction'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Redacts a PDF based on selected text, drawn shapes and/or selected page(s)" class="security" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/redact-manual.svg#icon-redact-manual"></use>
+      </svg>
+      <span class="icon-text">Manual Redaction</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="redact"
+      onclick="addToFavorites(&#39;redact&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="stamp" class="dropdown-item security" style="position:relative" href="stamp"
+    data-bs-link="stamp"
+    data-bs-tags="Stamp, Add image, center image, Watermark, PDF, Embed, Customize" data-bs-title='Add Stamp to PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add text or add image stamps at set locations" class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">approval</span>
+      <span class="icon-text">Add Stamp to PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="stamp"
+      onclick="addToFavorites(&#39;stamp&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-watermark" class="dropdown-item security" style="position:relative" href="add-watermark"
+    data-bs-link="add-watermark"
+    data-bs-tags="Text,repeating,label,own,copyright,trademark,img,jpg,picture,photo" data-bs-title='Add Watermark'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add a custom watermark to your PDF document." class="security" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">water_drop</span>
+      <span class="icon-text">Add Watermark</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-watermark"
+      onclick="addToFavorites(&#39;add-watermark&#39;)">
+      add
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+  <div id="groupView" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">View &amp; Edit</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="view-pdf" class="dropdown-item other" style="position:relative" href="view-pdf"
+    data-bs-link="view-pdf"
+    data-bs-tags="view,read,annotate,text,image,highlight,edit" data-bs-title='View/Edit PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="View, annotate, draw, add text or images" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">menu_book</span>
+      <span class="icon-text">View/Edit PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="view-pdf"
+      onclick="addToFavorites(&#39;view-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-page-numbers" class="dropdown-item other" style="position:relative" href="add-page-numbers"
+    data-bs-link="add-page-numbers"
+    data-bs-tags="paginate,label,organize,index" data-bs-title='Add Page Numbers'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Add Page numbers throughout a document in a set location" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">123</span>
+      <span class="icon-text">Add Page Numbers</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-page-numbers"
+      onclick="addToFavorites(&#39;add-page-numbers&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="add-image" class="dropdown-item other" style="position:relative" href="add-image"
+    data-bs-link="add-image"
+    data-bs-tags="img,jpg,picture,photo" data-bs-title='Add image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adds a image onto a set location on the PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">text_fields</span>
+      <span class="icon-text">Add image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="add-image"
+      onclick="addToFavorites(&#39;add-image&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="change-metadata" class="dropdown-item other" style="position:relative" href="change-metadata"
+    data-bs-link="change-metadata"
+    data-bs-tags="Title,author,date,creation,time,publisher,producer,stats" data-bs-title='Change Metadata'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Change/Remove/Add metadata from a PDF document" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">assignment</span>
+      <span class="icon-text">Change Metadata</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="change-metadata"
+      onclick="addToFavorites(&#39;change-metadata&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="ocr-pdf" class="dropdown-item other" style="position:relative" href="ocr-pdf"
+    data-bs-link="ocr-pdf"
+    data-bs-tags="recognition,text,image,scan,read,identify,detection,editable" data-bs-title='OCR / Cleanup scans'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Cleanup scans and detects text from images within a PDF and re-adds it as text." class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">quick_reference_all</span>
+      <span class="icon-text">OCR / Cleanup scans</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="ocr-pdf"
+      onclick="addToFavorites(&#39;ocr-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-images" class="dropdown-item other" style="position:relative" href="extract-images"
+    data-bs-link="extract-images"
+    data-bs-tags="picture,photo,save,archive,zip,capture,grab" data-bs-title='Extract Images'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Extracts all images from a PDF and saves them to zip" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">photo_library</span>
+      <span class="icon-text">Extract Images</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-images"
+      onclick="addToFavorites(&#39;extract-images&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="flatten" class="dropdown-item other" style="position:relative" href="flatten"
+    data-bs-link="flatten"
+    data-bs-tags="static,deactivate,non-interactive,streamline" data-bs-title='Flatten'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove all interactive elements and forms from a PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">layers_clear</span>
+      <span class="icon-text">Flatten</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="flatten"
+      onclick="addToFavorites(&#39;flatten&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-blanks" class="dropdown-item other" style="position:relative" href="remove-blanks"
+    data-bs-link="remove-blanks"
+    data-bs-tags="cleanup,streamline,non-content,organize" data-bs-title='Remove Blank pages'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Detects and removes blank pages from a document" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">scan_delete</span>
+      <span class="icon-text">Remove Blank pages</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-blanks"
+      onclick="addToFavorites(&#39;remove-blanks&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-annotations" class="dropdown-item other" style="position:relative" href="remove-annotations"
+    data-bs-link="remove-annotations"
+    data-bs-tags="comments,highlight,notes,markup,remove" data-bs-title='Remove Annotations'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Removes all comments/annotations from a PDF" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">thread_unread</span>
+      <span class="icon-text">Remove Annotations</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-annotations"
+      onclick="addToFavorites(&#39;remove-annotations&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="compare" class="dropdown-item other" style="position:relative" href="compare"
+    data-bs-link="compare"
+    data-bs-tags="differentiate,contrast,changes,analysis" data-bs-title='Compare'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Compares and shows the differences between 2 PDF Documents" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">compare</span>
+      <span class="icon-text">Compare</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="compare"
+      onclick="addToFavorites(&#39;compare&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="get-info-on-pdf" class="dropdown-item other" style="position:relative" href="get-info-on-pdf"
+    data-bs-link="get-info-on-pdf"
+    data-bs-tags="infomation,data,stats,statistics" data-bs-title='Get ALL Info on PDF'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Grabs any and all information possible on PDFs" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">info</span>
+      <span class="icon-text">Get ALL Info on PDF</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="get-info-on-pdf"
+      onclick="addToFavorites(&#39;get-info-on-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="remove-image-pdf" class="dropdown-item other" style="position:relative" href="remove-image-pdf"
+    data-bs-link="remove-image-pdf"
+    data-bs-tags="Remove Image,Page operations,Back end,server side" data-bs-title='Remove image'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove image from PDF to reduce file size" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">remove_selection</span>
+      <span class="icon-text">Remove image</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="remove-image-pdf"
+      onclick="addToFavorites(&#39;remove-image-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="replace-and-invert-color-pdf" class="dropdown-item other" style="position:relative" href="replace-and-invert-color-pdf"
+    data-bs-link="replace-and-invert-color-pdf"
+    data-bs-tags="Replace Color,Page operations,Back end,server side" data-bs-title='Replace and Invert Color'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Replace color for text and background in PDF and invert full color of pdf to reduce file size" class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">format_color_fill</span>
+      <span class="icon-text">Replace and Invert Color</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="replace-and-invert-color-pdf"
+      onclick="addToFavorites(&#39;replace-and-invert-color-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="unlock-pdf-forms" class="dropdown-item other" style="position:relative" href="unlock-pdf-forms"
+    data-bs-link="unlock-pdf-forms"
+    data-bs-tags="remove,delete,form,field,readonly" data-bs-title='Unlock PDF Forms'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Remove read-only property of form fields in a PDF document." class="other" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">preview_off</span>
+      <span class="icon-text">Unlock PDF Forms</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="unlock-pdf-forms"
+      onclick="addToFavorites(&#39;unlock-pdf-forms&#39;)">
+      add
+    </span>
+  </a>
+
+  
+    </div>
+  </div>
+  <div id="groupAdvanced" class="feature-group">
+    <div class="feature-group-header">
+  <h6 class="menu-title">Advanced</h6>
+</div>
+    <div class="nav-group-container">
+      
+  <a id="pipeline" class="dropdown-item advance" style="position:relative" href="pipeline"
+    data-bs-link="pipeline"
+    data-bs-tags="automate,sequence,scripted,batch-process" data-bs-title='Pipeline'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Run multiple actions on PDFs by defining pipeline scripts" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">family_history</span>
+      <span class="icon-text">Pipeline</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="pipeline"
+      onclick="addToFavorites(&#39;pipeline&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="adjust-contrast" class="dropdown-item advance" style="position:relative" href="adjust-contrast"
+    data-bs-link="adjust-contrast"
+    data-bs-tags="color-correction,tune,modify,enhance" data-bs-title='Adjust Colors/Contrast'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Adjust Contrast, Saturation and Brightness of a PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">palette</span>
+      <span class="icon-text">Adjust Colors/Contrast</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="adjust-contrast"
+      onclick="addToFavorites(&#39;adjust-contrast&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="compress-pdf" class="dropdown-item advance" style="position:relative" href="compress-pdf"
+    data-bs-link="compress-pdf"
+    data-bs-tags="squish,small,tiny" data-bs-title='Compress'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Compress PDFs to reduce their file size." class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">zoom_in_map</span>
+      <span class="icon-text">Compress</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="compress-pdf"
+      onclick="addToFavorites(&#39;compress-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="extract-image-scans" class="dropdown-item advance" style="position:relative" href="extract-image-scans"
+    data-bs-link="extract-image-scans"
+    data-bs-tags="separate,auto-detect,scans,multi-photo,organize" data-bs-title='Detect/Split Scanned photos'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Splits multiple photos from within a photo/PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">scanner</span>
+      <span class="icon-text">Detect/Split Scanned photos</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="extract-image-scans"
+      onclick="addToFavorites(&#39;extract-image-scans&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="repair" class="dropdown-item advance" style="position:relative" href="repair"
+    data-bs-link="repair"
+    data-bs-tags="fix,restore,correction,recover" data-bs-title='Repair'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Tries to repair a corrupt/broken PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">build</span>
+      <span class="icon-text">Repair</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="repair"
+      onclick="addToFavorites(&#39;repair&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="auto-rename" class="dropdown-item advance" style="position:relative" href="auto-rename"
+    data-bs-link="auto-rename"
+    data-bs-tags="auto-detect,header-based,organize,relabel" data-bs-title='Auto Rename PDF File'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto renames a PDF file based on its detected header" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/rename.svg#icon-rename"></use>
+      </svg>
+      <span class="icon-text">Auto Rename PDF File</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-rename"
+      onclick="addToFavorites(&#39;auto-rename&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="auto-split-pdf" class="dropdown-item advance" style="position:relative" href="auto-split-pdf"
+    data-bs-link="auto-split-pdf"
+    data-bs-tags="QR-based,separate,scan-segment,organize" data-bs-title='Auto Split Pages'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Auto Split Scanned PDF with physical scanned page splitter QR Code" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-auto.svg#icon-split-auto"></use>
+      </svg>
+      <span class="icon-text">Auto Split Pages</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="auto-split-pdf"
+      onclick="addToFavorites(&#39;auto-split-pdf&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="show-javascript" class="dropdown-item advance" style="position:relative" href="show-javascript"
+    data-bs-link="show-javascript"
+    data-bs-tags="JS" data-bs-title='Show Javascript'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Searches and displays any JS injected into a PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">javascript</span>
+      <span class="icon-text">Show Javascript</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="show-javascript"
+      onclick="addToFavorites(&#39;show-javascript&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-by-size-or-count" class="dropdown-item advance" style="position:relative" href="split-by-size-or-count"
+    data-bs-link="split-by-size-or-count"
+    data-bs-tags="pdf,split,document,organization" data-bs-title='Auto Split by Size/Count'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Split a single PDF into multiple documents based on size, page count, or document count" class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-size.svg#icon-split-size"></use>
+      </svg>
+      <span class="icon-text">Auto Split by Size/Count</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-by-size-or-count"
+      onclick="addToFavorites(&#39;split-by-size-or-count&#39;)">
+      star
+    </span>
+  </a>
+
+
+      
+  <a id="overlay-pdf" class="dropdown-item advance" style="position:relative" href="overlay-pdf"
+    data-bs-link="overlay-pdf"
+    data-bs-tags="Overlay" data-bs-title='Overlay PDFs'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Overlays PDFs on-top of another PDF" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">layers</span>
+      <span class="icon-text">Overlay PDFs</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="overlay-pdf"
+      onclick="addToFavorites(&#39;overlay-pdf&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdf-by-sections" class="dropdown-item advance" style="position:relative" href="split-pdf-by-sections"
+    data-bs-link="split-pdf-by-sections"
+    data-bs-tags="Section Split, Divide, Customize" data-bs-title='Split PDF by Sections'>
+    <div style="min-height:2.7rem; align-items: center;display: flex;" title="Divide each page of a PDF into smaller horizontal and vertical sections" class="advance" alt="icon">
+      <span class="material-symbols-rounded nav-icon" style=" align-items:center; display: flex; justify-content: center; height:2.7rem; width:2.7rem">grid_on</span>
+      <span class="icon-text">Split PDF by Sections</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdf-by-sections"
+      onclick="addToFavorites(&#39;split-pdf-by-sections&#39;)">
+      add
+    </span>
+  </a>
+
+
+      
+  <a id="split-pdf-by-chapters" class="dropdown-item advance" style="position:relative" href="split-pdf-by-chapters"
+    data-bs-link="split-pdf-by-chapters"
+    data-bs-tags="split,chapters,bookmarks,organize" data-bs-title='Split PDF by Chapters'>
+    <div style="min-height:2.5rem;align-items: center;display: flex" title="Split a PDF into multiple files based on its chapter structure." class="advance" alt="icon">
+      <svg class="nav-icon"
+        style="height: 2.7rem; width:2.7rem; align-items:center; display: flex; justify-content: center;">
+        <use xlink:href="/images/split-chapters.svg#icon-split-chapters"></use>
+      </svg>
+      <span class="icon-text">Split PDF by Chapters</span>
+    </div>
+    <span class="material-symbols-rounded favorite-icon" style="display: none;" data-endpoint="split-pdf-by-chapters"
+      onclick="addToFavorites(&#39;split-pdf-by-chapters&#39;)">
+      star
+    </span>
+  </a>
+
+
+    </div>
+  </div>
+
+          </div>
+
+        </div>
+            <footer id="footer" class="text-center pt-5">
+  
+  <script type="module" src="/js/thirdParty/cookieconsent-config.js"></script>
+  <div class="footer-center pb-4">
+    <!-- Links section -->
+    <div class="d-flex justify-content-center">
+      <ul class="list-unstyled footer-link-list">
+        <li><a class="footer-link px-2" id="licenses" target="_blank" href="/licenses">Licenses</a></li>
+        <li><a class="footer-link px-2" id="releases" target="_blank" href="/releases">Releases</a></li>
+        <li><a class="footer-link px-2" id="survey" target="_blank" href="https://stirlingpdf.info/s/cm28y3niq000o56dv7liv8wsu">Survey</a></li>
+        <li><a class="footer-link px-2" target="_blank" href="https://www.stirlingpdf.com/privacy-policy">Privacy Policy</a></li>
+        <li><a class="footer-link px-2" target="_blank" href="https://www.stirlingpdf.com/terms-and-conditions">Terms and Conditions</a></li>
+        
+        
+        
+        <li><a class="footer-link px-2" id="cookieBanner" target="_blank"  onClick="CookieConsent.show(true)">Cookie Preferences</a></li>
+      </ul>
+    </div>
+
+    <!-- powered by section -->
+    <div class="footer-powered-by">
+      <span>Powered by</span>
+      <a href="https://stirlingpdf.com" class="stirling-link">Stirling PDF</a>
+    </div>
+  </div>
+</footer>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Survey Modal -->
+  <div class="modal fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="surveyModalLabel">Stirling-PDF Survey</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+		<p>If you&#39;re using Stirling PDF at work, we&#39;d love to speak to you. We&#39;re offering technical support sessions in exchange for a 15 minute user discovery session.</p>
+		<p>This is a chance to:</p>
+		<p><span>🛠️</span><span>Get help with deployment, integrations, or troubleshooting</span></p>
+		<p><span>📢</span><span>Provide direct feedback on performance, edge cases, and feature gaps</span></p>
+		<p><span>🔍</span><span>Help us refine Stirling PDF for real-world enterprise use</span></p>
+		<p>If you&#39;re interested, you can book time with our team directly. (English speaking only)</p>
+		<p>Looking forward to digging into your use cases and making Stirling PDF even better!</p>
+		<a href="https://calendly.com/d/cm4p-zz5-yy8/stirling-pdf-15-minute-group-discussion" target="_blank" class="btn btn-primary" id="takeSurvey2">Book meeting</a>
+		</br>
+		</br>
+		 <p>Not a business and/or interested in a meeting?</p>
+ 
+          <p>Please consider taking our survey!</p>
+          <a href="https://stirlingpdf.info/s/cm28y3niq000o56dv7liv8wsu" target="_blank" class="btn btn-primary"
+            id="takeSurvey">Take Survey</a>
+        </div>
+        <div class="modal-footer">
+          <div class="form-check mb-3">
+            <input type="checkbox" id="dontShowAgain">
+            <label for="dontShowAgain">Don&#39;t show again</label>
+          </div>
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Analytics Modal -->
+  
+
+
+  <style>
+    .favorite-icon {
+      cursor: pointer;
+      width: 0rem;
+      font-size: 2rem;
+    }
+
+    .toggle-favourites {
+      cursor: pointer;
+    }
+
+    .toggle-favourites.active {
+      color: gold;
+    }
+  </style>
+  <script src="/js/fetch-utils.js"></script>
+  <script>
+    /*<![CDATA[*/
+    window.analyticsPromptBoolean = false;
+    /*]]>*/
+
+    window.showSurvey = true
+  </script>
+  <script src="/js/pages/home.js"></script>
+  <script>
+    function applyScale() {
+      const baseWidth = 1440;
+      const baseHeight = 1000;
+      const scaleX = window.innerWidth / baseWidth;
+      const scaleY = window.innerHeight / baseHeight;
+      const scale = Math.max(0.9, Math.min(scaleX, scaleY)); // keep aspect ratio, honor minScale
+      const ui = document.getElementById('scale-wrap');
+      ui.style.transform = `scale(${scale*0.75})`;
+    }
+  
+    window.addEventListener('resize', applyScale);
+    window.addEventListener('load', applyScale);
+  </script>
+  
+
+</body>
+
+</html>
